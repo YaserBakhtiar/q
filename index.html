@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-title" content="القرآن">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--fs:'Vazirmatn',-apple-system,'SF Arabic',system-ui,Tahoma,sans-serif;--top:calc(env(safe-area-inset-top,0px) + 74px);--bot:calc(env(safe-area-inset-bottom,0px) + 96px);--ease:cubic-bezier(.32,.72,0,1);--filter:none;--dg:#E5483D}
 body.theme-modern{--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
@@ -26,6 +26,8 @@ body.theme-zard.night-mode{--bg:#14100A;--tx:#F0E6D2;--mut:#A39274;--ac:#E3B04B;
 body.theme-abi{--bg:#EAF2FC;--tx:#12223D;--mut:#5B6F8C;--ac:#2B6ED9;--ac2:#7AB0FF;--on:#fff;--gl:rgba(255,255,255,.64);--gb:rgba(255,255,255,.85);--sheet:rgba(244,248,254,.9);--fill:rgba(20,60,130,.07);--b1:rgba(43,110,217,.22);--b2:rgba(122,176,255,.3)}
 body.theme-abi.night-mode{--bg:#070D1B;--tx:#EEF3FF;--mut:#8EA2C8;--ac:#5AA2FF;--ac2:#9CC6FF;--on:#04142B;--gl:rgba(20,32,58,.55);--gb:rgba(255,255,255,.13);--sheet:rgba(12,20,40,.9);--fill:rgba(255,255,255,.08);--b1:rgba(90,162,255,.2);--b2:rgba(156,198,255,.12)}
 body.night-mode{--filter:invert(.9) brightness(1.1) contrast(1.05) hue-rotate(180deg)}
+body.lang-ar{--fs:'Noto Kufi Arabic','Vazirmatn',sans-serif}
+body.lang-ar .hdr-surah,body.lang-ar .splash-title{font-family:'Noto Kufi Arabic',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 ::-webkit-scrollbar{display:none}
 body,.splash-overlay{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cpath d='M36 5l7 16 16-7-7 16 16 7-16 7 7 16-16-7-7 16-7-16-16 7 7-16-16-7 16-7-7-16 16 7z' fill='none' stroke='%23888' stroke-opacity='.13'/%3E%3C/svg%3E"),radial-gradient(60% 40% at 12% 8%,var(--b1),transparent 70%),radial-gradient(50% 38% at 95% 32%,var(--b2),transparent 70%),radial-gradient(70% 40% at 50% 104%,var(--b1),transparent 70%),var(--bg);background-attachment:fixed}
@@ -60,7 +62,9 @@ body.night-mode .page-wrapper{background:#101614}
 .nav-btn{position:fixed;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;z-index:90;display:none;align-items:center;justify-content:center;font-size:24px;color:var(--ac);transition:transform .2s}
 .nav-btn:active{transform:scale(.9)}
 .nav-right{right:16px}.nav-left{left:16px}
-@media(min-width:769px){.desk{display:flex}.nav-btn{display:flex}.page{max-width:calc(50vw - 56px)}}
+.edge-zone{position:fixed;top:0;bottom:0;width:18%;z-index:85;display:none;cursor:pointer}
+.edge-left{left:0}.edge-right{right:0}
+@media(min-width:769px){.desk{display:flex}.nav-btn{display:flex}.page{max-width:calc(50vw - 56px)}.edge-zone{display:block}}
 .overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;z-index:2500}
 .overlay.active{display:flex}
 .overlay-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .3s}
@@ -259,11 +263,19 @@ body.night-mode .page-wrapper{background:#101614}
   <button class="nav-btn nav-left glass" id="navLeft" data-i18n-t="nextTitle"><svg class="ic"><use href="#i-prev"/></svg></button>
 </div>
 
+<div class="edge-zone edge-left" id="edgeLeft"></div>
+<div class="edge-zone edge-right" id="edgeRight"></div>
+
 <script>
 // ================== CONFIG ==================
+// فایل‌ها: Quran001.webp = غلاف (نمایش داده نمی‌شود)
+//          Quran002.webp = صفحه ۲ = فاتحه
+//          Quran003.webp = صفحه ۳ = بقره
+//          ...
+//          Quran612.webp = آخرین صفحه
 const totalFiles = 612;
-const FIRST_FILE = 3;                                   // فایل‌های ۱ و ۲ جلد هستند
-const TOTAL = totalFiles - FIRST_FILE + 1;              // تعداد صفحه‌های قابل دانلود
+const FIRST_FILE = 2;                                   // از Quran002.webp شروع می‌شود
+const TOTAL = totalFiles - FIRST_FILE + 1;              // تعداد صفحه‌های قابل دانلود = 611
 const TOLERANCE = 3;                                    // حداکثر صفحهٔ ناقص برای «کامل» حساب شدن
 const IMAGE_BASE = 'https://raw.githubusercontent.com/YaserBakhtiar/q/main/webp-image/';
 const IMAGE_CACHE_NAME = 'quran-cache-webp-v1';         // کش مخصوص تصاویر webp
@@ -272,17 +284,18 @@ const IMG_EXT = 'webp';                                 // فرمت تصاویر
 let tapT;
 
 function updateChrome() {
-  const p = currentFile - 2;
+  const p = currentFile - 1;                             // شمارهٔ صفحهٔ استاندارد
   let s = 0; for (let i = 0; i < 114; i++) if (surahPages[i] <= p) s = i;
-  const j = currentFile >= 588 ? 30 : Math.min(29, Math.max(1, Math.floor((currentFile - 4) / 20) + 1));
+  const j = currentFile >= 587 ? 30 : Math.min(29, Math.max(1, Math.floor((currentFile - 3) / 20) + 1));
   $('hdrSurah').textContent = surahNames[currentLang][s];
   $('hdrJuz').textContent = T().juz + fmt(j);
-  $('pgNum').textContent = T().pageOf.replace('{n}', fmt(p)).replace('{t}', fmt(totalFiles - 2));
+  // نمایش شمارهٔ فایل به‌عنوان شمارهٔ صفحه (Quran002 = صفحه ۲)
+  $('pgNum').textContent = T().pageOf.replace('{n}', fmt(currentFile)).replace('{t}', fmt(totalFiles));
   $('pgBar').style.width = ((currentFile - FIRST_FILE) / (totalFiles - FIRST_FILE) * 100) + '%';
 }
 
 let currentFile = FIRST_FILE;
-let downloadStatus = 'none';                            // none | partial | complete
+let downloadStatus = 'none';
 let downloading = false;
 let deferredPrompt = null;
 const objectUrls = { right: null, left: null };
@@ -309,7 +322,7 @@ const translations = {
     noSpaceMsg: 'فضای خالی دستگاه برای دانلود (حدود ۵۰۰ مگابایت) کافی نیست.',
     partialMsg: '{count} صفحه دانلود نشد. اینترنت خود را بررسی کنید و دوباره تلاش کنید.', partialStatus: 'دانلود ناقص: {count} از {total}',
     tabJuz: 'اجزاء', tabSurah: 'سوره‌ها', juz: 'جزء ', page: 'صفحه ', menuTitle: 'فهرست اجزاء و سوره‌ها', downloadBtnTitle: 'دانلود آفلاین', fullscreenTitle: 'تمام صفحه', prevTitle: 'صفحه قبل', nextTitle: 'صفحه بعد',
-    themeZard: 'زرد', themeAbi: 'آبی', themeModern: 'مدرن', dayMode: 'روز', nightMode: 'شب',
+    themeZard: 'زرد', themeAbi: 'آبی', themeModern: 'سبز', dayMode: 'روز', nightMode: 'شب',
     downloadSuccess: 'دانلود با موفقیت انجام شد!', deleteSuccess: 'فایل‌های آفلاین حذف شدند.', downloadError: 'خطا در دانلود! لطفاً دوباره تلاش کنید.', deleteError: 'خطا در حذف!',
     installTitle: 'راهنمای نصب', installBtn: 'نصب اپلیکیشن',
     guideAndroid: 'اندروید: روی دکمه نصب اپلیکیشن کلیک نمایید یا از منوی مرورگر «افزودن به صفحه اصلی» را انتخاب کنید',
@@ -328,7 +341,7 @@ const translations = {
     noSpaceMsg: 'المساحة المتاحة على الجهاز غير كافية (حوالي ٥٠٠ م.ب).',
     partialMsg: 'تعذّر تنزيل {count} صفحة. تحقق من الاتصال وحاول مرة أخرى.', partialStatus: 'تنزيل غير مكتمل: {count} من {total}',
     tabJuz: 'الأجزاء', tabSurah: 'السور', juz: 'الجزء ', page: 'صفحة ', menuTitle: 'قائمة الأجزاء والسور', downloadBtnTitle: 'تحميل دون اتصال', fullscreenTitle: 'ملء الشاشة', prevTitle: 'الصفحة السابقة', nextTitle: 'الصفحة التالية',
-    themeZard: 'الأصفر', themeAbi: 'الأزرق', themeModern: 'الحديثة', dayMode: 'النهار', nightMode: 'الليل',
+    themeZard: 'الأصفر', themeAbi: 'الأزرق', themeModern: 'أخضر', dayMode: 'النهار', nightMode: 'الليل',
     downloadSuccess: 'تم التحميل بنجاح!', deleteSuccess: 'تم حذف الملفات غير المتصلة.', downloadError: 'خطأ في التحميل! حاول مرة أخرى.', deleteError: 'خطأ في الحذف!',
     installTitle: 'دليل التثبيت', installBtn: 'تثبيت التطبيق',
     guideAndroid: 'أندرويد: انقر على زر تثبيت التطبيق أو اختر "إضافة إلى الشاشة الرئيسية" من قائمة المتصفح',
@@ -369,6 +382,7 @@ function applyTranslations() {
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('quran-language', lang);
+  document.body.classList.toggle('lang-ar', lang === 'ar');
   applyTranslations();
   $('langFa').classList.toggle('active', lang === 'fa');
   $('langAr').classList.toggle('active', lang === 'ar');
@@ -475,7 +489,7 @@ function updatePages() {
 }
 function nextPage() { const s = isMobile() ? 1 : 2; if (currentFile + s > totalFiles) return; currentFile += s; updatePages(); }
 function prevPage() { const s = isMobile() ? 1 : 2; if (currentFile - s < FIRST_FILE) return; currentFile -= s; updatePages(); }
-function goToFile(n) { currentFile = n; updatePages(); closeOverlay('juzOverlay'); }
+function goToFile(n) { currentFile = Math.max(n, FIRST_FILE); updatePages(); closeOverlay('juzOverlay'); }
 
 // ================== Zoom & pan ==================
 let scale = 1, tx = 0, ty = 0, lastTx = 0, lastTy = 0, pinchDist = null, panning = false, lastTap = 0, moved = false;
@@ -632,13 +646,15 @@ function gridItem(num, name, onSelect) {
 function buildJuzGrid() {
   const g = $('juzGrid'); g.textContent = '';
   for (let i = 1; i <= 30; i++) {
-    const start = i === 1 ? 3 : i === 30 ? 588 : 4 + (i - 1) * 20;
+    // Juz 1 → file 2 (Al-Fatiha), Juz 30 → file 587
+    const start = i === 1 ? 2 : i === 30 ? 587 : 3 + (i - 1) * 20;
     g.appendChild(gridItem(i, T().juz + juzOrdinals[currentLang][i - 1], () => goToFile(start)));
   }
 }
 function buildSurahGrid() {
   const g = $('surahGrid'); g.textContent = '';
-  for (let i = 0; i < 114; i++) g.appendChild(gridItem(i + 1, surahNames[currentLang][i], () => goToFile(surahPages[i] + 2)));
+  // file = standard_page + 1 (چون Quran002 = صفحهٔ فاتحه)
+  for (let i = 0; i < 114; i++) g.appendChild(gridItem(i + 1, surahNames[currentLang][i], () => goToFile(surahPages[i] + 1)));
 }
 
 // ================== Events ==================
@@ -646,9 +662,22 @@ $('btnMenu').onclick = () => openOverlay('juzOverlay');
 $('btnQuick').onclick = () => setThemeMode(themeMode === 'day' ? 'night' : 'day');
 $('btnSettings').onclick = () => openOverlay('settingsOverlay');
 $('btnDownload').onclick = () => openOverlay('downloadOverlay');
-$('btnFullscreen').onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); else document.exitFullscreen(); };
+$('btnFullscreen').onclick = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+    document.body.classList.add('immersive');
+  } else {
+    document.exitFullscreen();
+    document.body.classList.remove('immersive');
+  }
+};
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) document.body.classList.remove('immersive');
+});
 $('navRight').onclick = prevPage;
 $('navLeft').onclick = nextPage;
+$('edgeRight').onclick = prevPage;
+$('edgeLeft').onclick = nextPage;
 $('splashContinue').onclick = () => closeOverlay('splashOverlay');
 $('splashJuzList').onclick = () => { closeOverlay('splashOverlay'); openOverlay('juzOverlay'); };
 $('themeZardBtn').onclick = () => setThemeStyle('zard');
