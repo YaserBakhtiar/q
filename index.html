@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-title" content="القرآن">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--fs:'Vazirmatn',-apple-system,'SF Arabic',system-ui,Tahoma,sans-serif;--fk:'Noto Kufi Arabic','Vazirmatn',-apple-system,sans-serif;--top:calc(env(safe-area-inset-top,0px) + 74px);--bot:calc(env(safe-area-inset-bottom,0px) + 96px);--ease:cubic-bezier(.32,.72,0,1);--filter:none;--dg:#E5483D}
 body.theme-modern{--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
@@ -38,8 +38,9 @@ button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer
 .hdr{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:12px;right:12px;max-width:620px;margin:auto;height:56px;border-radius:28px;z-index:100;display:flex;align-items:center;gap:10px;padding:0 14px;overflow:hidden;transition:transform .5s var(--ease),opacity .4s}
 .hdr-juz{font-size:12px;font-weight:700;color:var(--ac);background:var(--fill);padding:5px 12px;border-radius:99px;white-space:nowrap}
 .hdr-mid{flex:1;text-align:center;min-width:0}
-.hdr-surah{font-size:20px;font-weight:700;line-height:1.25}
+.hdr-surah{font-family:'Amiri',serif;font-size:23px;font-weight:700;line-height:1.25}
 .hdr-pg{font-size:11px;color:var(--mut)}
+@media(min-width:769px){.hdr-mid{display:flex;align-items:baseline;justify-content:center;gap:14px}.hdr-pg{font-family:'Amiri',serif;font-size:16px}}
 .hdr-bar{position:absolute;bottom:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:3px;transition:width .5s var(--ease)}
 .icon-btn{width:40px;height:40px;border-radius:50%;background:var(--fill);font-size:19px;display:flex;align-items:center;justify-content:center;color:var(--ac);transition:transform .2s}
 .icon-btn:active{transform:scale(.88)}
@@ -63,7 +64,7 @@ body.night-mode .page-wrapper{background:#101614}
 .nav-btn:hover .ic{opacity:1}
 .nav-btn:active .ic{transform:scale(.88)}
 .nav-right{right:0}.nav-left{left:0}
-body.is-fs{--top:8px;--bot:8px}
+body.is-fs{--top:22px;--bot:22px}
 body.is-fs .progress-pill{top:12px}
 @media(min-width:769px){.desk{display:flex}.nav-btn{display:flex}.page{max-width:calc(50vw - 56px)}body.is-fs .page{max-width:calc(50vw - 14px)}}
 .overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;z-index:2500}
@@ -280,8 +281,8 @@ function updateChrome() {
   const last = two ? currentFile + 1 : currentFile;            // آخرین صفحهٔ دیده‌شده
   const p = last - 1;                                          // شمارهٔ صفحه در مصحف (فاتحه = ۱)
   let s = 0; for (let i = 0; i < 114; i++) if (surahPages[i] <= p) s = i;
-  const j = Math.min(30, Math.max(1, Math.floor((last - 3) / 20) + 1));
-  $('hdrSurah').textContent = surahNames[currentLang][s];
+  const j = last >= 587 ? 30 : Math.min(29, Math.max(1, Math.floor((last - 3) / 20) + 1));
+  $('hdrSurah').textContent = T().surahWord + surahNames[currentLang][s];
   $('hdrJuz').textContent = T().juz + fmt(j);
   const n = two ? fmt(currentFile) + '–' + fmt(last) : fmt(currentFile);
   $('pgNum').textContent = T().pageOf.replace('{n}', n).replace('{t}', fmt(totalFiles));
@@ -307,7 +308,7 @@ addEventListener('beforeinstallprompt', e => {
 
 // ================== TRANSLATIONS ==================
 const translations = {
-  fa: { idxShort: 'فهرست', pageOf: 'صفحه {n} از {t}',
+  fa: { idxShort: 'فهرست', surahWord: 'سوره ', pageOf: 'صفحه {n} از {t}',
     splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید', splashContinue: 'ادامه مطالعه', splashJuz: 'فهرست اجزاء و سوره‌ها', splashLink: 'پیشنهادات و نظریات',
     settingsTitle: 'تنظیمات', themeLabel: 'تم', languageLabel: 'زبان', appearanceLabel: 'ظاهر', storageLabel: 'مدیریت حافظه', deleteBtn: 'حذف فایل‌های آفلاین', closeBtn: 'بستن',
     downloadTitle: 'راهنمای نصب و دانلود آفلاین', downloadDesc: 'برای مطالعهٔ آفلاین، فایل‌ها را دانلود کنید:', hq: 'دانلود آفلاین (۵۰۰ مگابایت)', hqSub: 'کیفیت بالا', cancel: 'لغو', ok: 'باشه',
@@ -326,7 +327,7 @@ const translations = {
     offlineGuideIntro: 'برای استفاده آفلاین از برنامه، ابتدا آن را نصب کرده و به صفحه اصلی اضافه کنید. سپس از طریق صفحه اصلی برنامه را باز کرده و فایل‌های آفلاین را دانلود نمایید. پس از آن می‌توانید در مراحل بعدی بدون نیاز به اینترنت از قرآن استفاده کنید.',
     downloading: 'در حال دانلود...', progress: 'پیشرفت: {current} از {total}'
   },
-  ar: { idxShort: 'الفهرس', pageOf: 'صفحة {n} من {t}',
+  ar: { idxShort: 'الفهرس', surahWord: 'سورة ', pageOf: 'صفحة {n} من {t}',
     splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم', splashContinue: 'متابعة القراءة', splashJuz: 'قائمة الأجزاء والسور', splashLink: 'اقتراحات وملاحظات',
     settingsTitle: 'الإعدادات', themeLabel: 'السمة', languageLabel: 'اللغة', appearanceLabel: 'المظهر', storageLabel: 'إدارة التخزين', deleteBtn: 'حذف الملفات المحفوظة', closeBtn: 'إغلاق',
     downloadTitle: 'دليل التثبيت والتنزيل دون اتصال', downloadDesc: 'نزّل الملفات للقراءة دون اتصال:', hq: 'تنزيل دون اتصال (٥٠٠ م.ب)', hqSub: 'جودة عالية', cancel: 'إلغاء', ok: 'موافق',
@@ -642,7 +643,7 @@ function gridItem(num, name, onSelect) {
 function buildJuzGrid() {
   const g = $('juzGrid'); g.textContent = '';
   for (let i = 1; i <= 30; i++) {
-    const start = i === 1 ? 2 : 3 + (i - 1) * 20;
+    const start = i === 1 ? 2 : i === 30 ? 587 : 3 + (i - 1) * 20;
     g.appendChild(gridItem(i, T().juz + juzOrdinals[currentLang][i - 1], () => goToFile(start)));
   }
 }
