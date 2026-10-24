@@ -35,14 +35,17 @@ body:not(.night-mode)::after{content:'';position:fixed;top:0;left:0;right:0;heig
 .ic{width:1em;height:1em;fill:currentColor;flex-shrink:0}
 button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .glass{background:var(--gl);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);border:1px solid var(--gb);box-shadow:0 8px 32px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.4)}
-.hdr{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:12px;right:12px;max-width:620px;margin:auto;height:56px;border-radius:28px;z-index:100;display:flex;align-items:center;gap:10px;padding:0 14px;overflow:hidden;transition:transform .5s var(--ease),opacity .4s}
-.hdr-juz{font-size:12px;font-weight:700;color:var(--ac);background:var(--fill);padding:5px 12px;border-radius:99px;white-space:nowrap}
-.hdr-mid{flex:1;text-align:center;min-width:0}
-.hdr-surah{font-family:'Amiri',serif;font-size:23px;font-weight:700;line-height:1.25}
-.hdr-pg{font-size:11px;color:var(--mut)}
-@media(min-width:769px){.hdr-mid{display:flex;align-items:baseline;justify-content:center;gap:14px}.hdr-pg{font-family:'Amiri',serif;font-size:16px}}
+.hdr{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:12px;right:12px;max-width:620px;margin:auto;height:58px;border-radius:29px;z-index:100;display:flex;align-items:center;gap:8px;padding:0 8px;overflow:hidden;transition:transform .5s var(--ease),opacity .4s}
+.hdr-btn{height:42px;border-radius:21px;background:var(--fill);display:flex;align-items:center;justify-content:center;color:var(--tx);transition:transform .2s,background .2s}
+.hdr-btn:active{transform:scale(.95);background:var(--gb)}
+.hdr-juz{font-size:13px;font-weight:700;color:var(--ac);padding:0 15px;white-space:nowrap}
+.hdr-mid{flex:1;min-width:0;flex-direction:column;padding:0 10px;line-height:1.15}
+.hdr-mid span{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-surah{font-family:'Amiri',serif;font-size:23px;font-weight:700}
+.hdr-pg{font-size:10.5px;color:var(--mut)}
+@media(min-width:769px){.hdr-mid{flex-direction:row;gap:14px}.hdr-mid span{display:inline}.hdr-pg{font-family:'Amiri',serif;font-size:16px}}
 .hdr-bar{position:absolute;bottom:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:3px;transition:width .5s var(--ease)}
-.icon-btn{width:40px;height:40px;border-radius:50%;background:var(--fill);font-size:19px;display:flex;align-items:center;justify-content:center;color:var(--ac);transition:transform .2s}
+.icon-btn{width:42px;padding:0;font-size:19px;color:var(--ac)}
 .icon-btn:active{transform:scale(.88)}
 .dock{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);left:50%;transform:translateX(-50%);height:68px;padding:6px;border-radius:34px;z-index:100;display:flex;gap:4px;transition:transform .5s var(--ease),opacity .4s}
 .dock-btn{min-width:78px;height:56px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--mut);padding:0 10px;transition:.25s}
@@ -243,9 +246,9 @@ body.is-fs .progress-pill{top:12px}
 </div>
 
 <header class="hdr glass" id="hdr">
-  <span class="hdr-juz" id="hdrJuz"></span>
-  <div class="hdr-mid"><div class="hdr-surah" id="hdrSurah"></div><div class="hdr-pg" id="pgNum"></div></div>
-  <button class="icon-btn" id="btnQuick" aria-label="theme"><svg class="ic"><use id="quickIc" href="#i-moon"/></svg></button>
+  <button class="hdr-btn hdr-juz" id="hdrJuz"></button>
+  <button class="hdr-btn hdr-mid" id="hdrMid"><span class="hdr-surah" id="hdrSurah"></span><span class="hdr-pg" id="pgNum"></span></button>
+  <button class="hdr-btn icon-btn" id="btnQuick" aria-label="theme"><svg class="ic"><use id="quickIc" href="#i-moon"/></svg></button>
   <i class="hdr-bar" id="pgBar"></i>
 </header>
 <nav class="dock glass" id="dock">
@@ -308,14 +311,14 @@ addEventListener('beforeinstallprompt', e => {
 
 // ================== TRANSLATIONS ==================
 const translations = {
-  fa: { idxShort: 'فهرست', surahWord: 'سوره ', pageOf: 'صفحه {n} از {t}',
+  fa: { idxShort: 'فهرست', surahWord: 'سوره ', pageOf: 'صفحه {n}',
     splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید', splashContinue: 'ادامه مطالعه', splashJuz: 'فهرست اجزاء و سوره‌ها', splashLink: 'پیشنهادات و نظریات',
     settingsTitle: 'تنظیمات', themeLabel: 'تم', languageLabel: 'زبان', appearanceLabel: 'ظاهر', storageLabel: 'مدیریت حافظه', deleteBtn: 'حذف فایل‌های آفلاین', closeBtn: 'بستن',
-    downloadTitle: 'راهنمای نصب و دانلود آفلاین', downloadDesc: 'برای مطالعهٔ آفلاین، فایل‌ها را دانلود کنید:', hq: 'دانلود آفلاین (۵۰۰ مگابایت)', hqSub: 'کیفیت بالا', cancel: 'لغو', ok: 'باشه',
+    downloadTitle: 'راهنمای نصب و دانلود آفلاین', downloadDesc: 'برای مطالعهٔ آفلاین، فایل‌ها را دانلود کنید:', hq: 'دانلود آفلاین (۲۶۵ مگابایت)', hqSub: 'کیفیت بالا', cancel: 'لغو', ok: 'باشه',
     confirmDeleteTitle: 'تأیید', confirmDeleteMsg: 'تمام فایل‌های دانلود شده حذف می‌شوند. ادامه می‌دهید؟',
-    confirmDownloadTitle: 'دانلود آفلاین', confirmDownloadMsg: 'فایل‌های آفلاین حدود ۵۰۰ مگابایت حجم دارد. ادامه می‌دهید؟',
+    confirmDownloadTitle: 'دانلود آفلاین', confirmDownloadMsg: 'فایل‌های آفلاین حدود ۲۶۵ مگابایت حجم دارد. ادامه می‌دهید؟',
     confirmResumeTitle: 'ادامه دانلود', confirmResumeMsg: 'شما قبلاً {count} صفحه را دانلود کرده‌اید. ادامه دانلود از همان‌جا؟',
-    noSpaceMsg: 'فضای خالی دستگاه برای دانلود (حدود ۵۰۰ مگابایت) کافی نیست.',
+    noSpaceMsg: 'فضای خالی دستگاه برای دانلود (حدود ۲۶۵ مگابایت) کافی نیست.',
     partialMsg: '{count} صفحه دانلود نشد. اینترنت خود را بررسی کنید و دوباره تلاش کنید.', partialStatus: 'دانلود ناقص: {count} از {total}',
     tabJuz: 'اجزاء', tabSurah: 'سوره‌ها', juz: 'جزء ', page: 'صفحه ', menuTitle: 'فهرست اجزاء و سوره‌ها', downloadBtnTitle: 'دانلود آفلاین', fullscreenTitle: 'تمام صفحه', prevTitle: 'صفحه قبل', nextTitle: 'صفحه بعد',
     themeZard: 'زرد', themeAbi: 'آبی', themeModern: 'سبز', dayMode: 'روز', nightMode: 'شب',
@@ -327,14 +330,14 @@ const translations = {
     offlineGuideIntro: 'برای استفاده آفلاین از برنامه، ابتدا آن را نصب کرده و به صفحه اصلی اضافه کنید. سپس از طریق صفحه اصلی برنامه را باز کرده و فایل‌های آفلاین را دانلود نمایید. پس از آن می‌توانید در مراحل بعدی بدون نیاز به اینترنت از قرآن استفاده کنید.',
     downloading: 'در حال دانلود...', progress: 'پیشرفت: {current} از {total}'
   },
-  ar: { idxShort: 'الفهرس', surahWord: 'سورة ', pageOf: 'صفحة {n} من {t}',
+  ar: { idxShort: 'الفهرس', surahWord: 'سورة ', pageOf: 'صفحة {n}',
     splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم', splashContinue: 'متابعة القراءة', splashJuz: 'قائمة الأجزاء والسور', splashLink: 'اقتراحات وملاحظات',
     settingsTitle: 'الإعدادات', themeLabel: 'السمة', languageLabel: 'اللغة', appearanceLabel: 'المظهر', storageLabel: 'إدارة التخزين', deleteBtn: 'حذف الملفات المحفوظة', closeBtn: 'إغلاق',
-    downloadTitle: 'دليل التثبيت والتنزيل دون اتصال', downloadDesc: 'نزّل الملفات للقراءة دون اتصال:', hq: 'تنزيل دون اتصال (٥٠٠ م.ب)', hqSub: 'جودة عالية', cancel: 'إلغاء', ok: 'موافق',
+    downloadTitle: 'دليل التثبيت والتنزيل دون اتصال', downloadDesc: 'نزّل الملفات للقراءة دون اتصال:', hq: 'تنزيل دون اتصال (٢٦٥ م.ب)', hqSub: 'جودة عالية', cancel: 'إلغاء', ok: 'موافق',
     confirmDeleteTitle: 'تأكيد', confirmDeleteMsg: 'سيتم حذف جميع الملفات التي تم تنزيلها. هل تريد المتابعة؟',
-    confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال', confirmDownloadMsg: 'حجم الملفات حوالي ٥٠٠ م.ب. هل تريد المتابعة؟',
+    confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال', confirmDownloadMsg: 'حجم الملفات حوالي ٢٦٥ م.ب. هل تريد المتابعة؟',
     confirmResumeTitle: 'متابعة التنزيل', confirmResumeMsg: 'لقد نزّلت {count} صفحة بالفعل. متابعة من حيث توقفت؟',
-    noSpaceMsg: 'المساحة المتاحة على الجهاز غير كافية (حوالي ٥٠٠ م.ب).',
+    noSpaceMsg: 'المساحة المتاحة على الجهاز غير كافية (حوالي ٢٦٥ م.ب).',
     partialMsg: 'تعذّر تنزيل {count} صفحة. تحقق من الاتصال وحاول مرة أخرى.', partialStatus: 'تنزيل غير مكتمل: {count} من {total}',
     tabJuz: 'الأجزاء', tabSurah: 'السور', juz: 'الجزء ', page: 'صفحة ', menuTitle: 'قائمة الأجزاء والسور', downloadBtnTitle: 'تحميل دون اتصال', fullscreenTitle: 'ملء الشاشة', prevTitle: 'الصفحة السابقة', nextTitle: 'الصفحة التالية',
     themeZard: 'الأصفر', themeAbi: 'الأزرق', themeModern: 'أخضر', dayMode: 'النهار', nightMode: 'الليل',
@@ -561,7 +564,7 @@ async function startDownload() {
   if (navigator.storage && navigator.storage.estimate) {
     try {
       const { quota, usage } = await navigator.storage.estimate();
-      if (quota && quota - usage < 600 * 1048576) { await dialog(t.noSpaceMsg, t.confirmDownloadTitle); return; }
+      if (quota && quota - usage < 320 * 1048576) { await dialog(t.noSpaceMsg, t.confirmDownloadTitle); return; }
     } catch (e) {}
   }
   const existing = await getFileSet();
@@ -654,6 +657,8 @@ function buildSurahGrid() {
 
 // ================== Events ==================
 $('btnMenu').onclick = () => openOverlay('juzOverlay');
+$('hdrJuz').onclick = () => { openOverlay('juzOverlay'); $('tabJuzBtn').click(); };
+$('hdrMid').onclick = () => { openOverlay('juzOverlay'); $('tabSurahBtn').click(); };
 $('btnQuick').onclick = () => setThemeMode(themeMode === 'day' ? 'night' : 'day');
 $('btnSettings').onclick = () => openOverlay('settingsOverlay');
 $('btnDownload').onclick = () => openOverlay('downloadOverlay');
