@@ -1,7 +1,7 @@
-const APP_CACHE_NAME = 'quran-app-v10';
+const APP_CACHE_NAME = 'quran-app-v11';
 const IMAGE_CACHE_NAME = 'quran-cache-webp-v1'; // باید با index.html یکی باشد
 const QURAN_IMAGE_RE = /Quran\d{3}\.(?:jpg|webp)/;
-const FONT_CSS = 'https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Vazirmatn:wght@300;400;500;600;700&display=swap';
+const FONT_CSS = 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap';
 
 const urlsToCache = [
   './', './index.html', './manifest.json',
