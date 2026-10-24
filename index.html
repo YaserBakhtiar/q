@@ -265,11 +265,12 @@ const totalFiles = 612;
 const FIRST_FILE = 3;                                   // فایل‌های ۱ و ۲ جلد هستند
 const TOTAL = totalFiles - FIRST_FILE + 1;              // تعداد صفحه‌های قابل دانلود
 const TOLERANCE = 3;                                    // حداکثر صفحهٔ ناقص برای «کامل» حساب شدن
-const IMAGE_BASE = 'https://raw.githubusercontent.com/ysrbkht/quran/main/images_high/';
-const IMAGE_CACHE_NAME = 'quran-cache-hq-v1';           // باید با sw.js یکی باشد
+const IMAGE_BASE = 'https://raw.githubusercontent.com/YaserBakhtiar/q/main/webp-image/';
+const IMAGE_CACHE_NAME = 'quran-cache-webp-v1';         // کش مخصوص تصاویر webp
 const $ = id => document.getElementById(id);
-const IMG_EXT = 'jpg';                                  // یا 'webp'
+const IMG_EXT = 'webp';                                 // فرمت تصاویر
 let tapT;
+
 function updateChrome() {
   const p = currentFile - 2;
   let s = 0; for (let i = 0; i < 114; i++) if (surahPages[i] <= p) s = i;
@@ -279,7 +280,6 @@ function updateChrome() {
   $('pgNum').textContent = T().pageOf.replace('{n}', fmt(p)).replace('{t}', fmt(totalFiles - 2));
   $('pgBar').style.width = ((currentFile - FIRST_FILE) / (totalFiles - FIRST_FILE) * 100) + '%';
 }
-
 
 let currentFile = FIRST_FILE;
 let downloadStatus = 'none';                            // none | partial | complete
