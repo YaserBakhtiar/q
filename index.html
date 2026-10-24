@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>القرآن الكريم</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#EDF3EF" id="theme-color-meta">
+<link rel="icon" type="image/png" sizes="48x48" href="./icons/maskable_icon_x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./icons/maskable_icon_x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/maskable_icon_x192.png">
+<link rel="apple-touch-icon" href="./icons/maskable_icon_x192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="القرآن">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fs:'Vazirmatn',-apple-system,'SF Arabic',system-ui,Tahoma,sans-serif;--top:calc(env(safe-area-inset-top,0px) + 74px);--bot:calc(env(safe-area-inset-bottom,0px) + 96px);--ease:cubic-bezier(.32,.72,0,1);--filter:none;--dg:#E5483D}
+body.theme-modern{--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
+body.theme-modern.night-mode{--bg:#06100D;--tx:#EAF4EF;--mut:#8CA79B;--ac:#3FD0A4;--ac2:#E0BC6A;--on:#05231A;--gl:rgba(24,44,37,.55);--gb:rgba(255,255,255,.14);--sheet:rgba(13,26,21,.9);--fill:rgba(255,255,255,.08);--b1:rgba(63,208,164,.2);--b2:rgba(224,188,106,.14)}
+body.theme-zard{--bg:#F8F1E3;--tx:#2B1D10;--mut:#8A7556;--ac:#A8760B;--ac2:#D9A936;--on:#fff;--gl:rgba(255,251,242,.66);--gb:rgba(255,255,255,.85);--sheet:rgba(252,247,236,.9);--fill:rgba(120,80,20,.08);--b1:rgba(217,169,54,.28);--b2:rgba(168,118,11,.16)}
+body.theme-zard.night-mode{--bg:#14100A;--tx:#F0E6D2;--mut:#A39274;--ac:#E3B04B;--ac2:#F0D58A;--on:#2A1D05;--gl:rgba(44,33,19,.55);--gb:rgba(255,255,255,.12);--sheet:rgba(28,21,12,.9);--fill:rgba(255,255,255,.07);--b1:rgba(227,176,75,.18);--b2:rgba(168,118,11,.14)}
+body.theme-abi{--bg:#EAF2FC;--tx:#12223D;--mut:#5B6F8C;--ac:#2B6ED9;--ac2:#7AB0FF;--on:#fff;--gl:rgba(255,255,255,.64);--gb:rgba(255,255,255,.85);--sheet:rgba(244,248,254,.9);--fill:rgba(20,60,130,.07);--b1:rgba(43,110,217,.22);--b2:rgba(122,176,255,.3)}
+body.theme-abi.night-mode{--bg:#070D1B;--tx:#EEF3FF;--mut:#8EA2C8;--ac:#5AA2FF;--ac2:#9CC6FF;--on:#04142B;--gl:rgba(20,32,58,.55);--gb:rgba(255,255,255,.13);--sheet:rgba(12,20,40,.9);--fill:rgba(255,255,255,.08);--b1:rgba(90,162,255,.2);--b2:rgba(156,198,255,.12)}
+body.night-mode{--filter:invert(.9) brightness(1.1) contrast(1.05) hue-rotate(180deg)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+::-webkit-scrollbar{display:none}
+body,.splash-overlay{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cpath d='M36 5l7 16 16-7-7 16 16 7-16 7 7 16-16-7-7 16-7-16-16 7 7-16-16-7 16-7-7-16 16 7z' fill='none' stroke='%23888' stroke-opacity='.13'/%3E%3C/svg%3E"),radial-gradient(60% 40% at 12% 8%,var(--b1),transparent 70%),radial-gradient(50% 38% at 95% 32%,var(--b2),transparent 70%),radial-gradient(70% 40% at 50% 104%,var(--b1),transparent 70%),var(--bg);background-attachment:fixed}
+body{font-family:var(--fs);color:var(--tx);height:100dvh;overflow:hidden;touch-action:none;line-height:1.5;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:color .4s}
+body:not(.night-mode)::after{content:'';position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + 4px);background:linear-gradient(rgba(0,0,0,.4),transparent);pointer-events:none;z-index:90}
+.ic{width:1em;height:1em;fill:currentColor;flex-shrink:0}
+button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
+.glass{background:var(--gl);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);border:1px solid var(--gb);box-shadow:0 8px 32px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.4)}
+.hdr{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:12px;right:12px;max-width:620px;margin:auto;height:56px;border-radius:28px;z-index:100;display:flex;align-items:center;gap:10px;padding:0 14px;overflow:hidden;transition:transform .5s var(--ease),opacity .4s}
+.hdr-juz{font-size:12px;font-weight:700;color:var(--ac);background:var(--fill);padding:5px 12px;border-radius:99px;white-space:nowrap}
+.hdr-mid{flex:1;text-align:center;min-width:0}
+.hdr-surah{font-family:'Amiri',serif;font-size:22px;font-weight:700;line-height:1.25}
+.hdr-pg{font-size:11px;color:var(--mut)}
+.hdr-bar{position:absolute;bottom:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:3px;transition:width .5s var(--ease)}
+.icon-btn{width:40px;height:40px;border-radius:50%;background:var(--fill);font-size:19px;display:flex;align-items:center;justify-content:center;color:var(--ac);transition:transform .2s}
+.icon-btn:active{transform:scale(.88)}
+.dock{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);left:50%;transform:translateX(-50%);height:68px;padding:6px;border-radius:34px;z-index:100;display:flex;gap:4px;transition:transform .5s var(--ease),opacity .4s}
+.dock-btn{min-width:78px;height:56px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--mut);padding:0 10px;transition:.25s}
+.dock-btn .ic{font-size:22px}
+.dock-btn:active{background:var(--fill);color:var(--ac);transform:scale(.93)}
+.btn-download.done{display:none!important}
+.desk{display:none}
+body.immersive .hdr{transform:translateY(-140%);opacity:0;pointer-events:none}
+body.immersive .dock{transform:translate(-50%,170%);opacity:0;pointer-events:none}
+body.immersive{--top:calc(env(safe-area-inset-top,0px) + 12px);--bot:calc(env(safe-area-inset-bottom,0px) + 12px)}
+.progress-pill{position:fixed;top:calc(env(safe-area-inset-top,0px) + 74px);left:50%;transform:translateX(-50%);display:none;z-index:150;padding:8px 16px;border-radius:99px;font-size:12px;font-weight:600}
+.main-content{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:var(--top) 10px var(--bot);transition:padding .5s var(--ease)}
+.quran-container{display:flex;justify-content:center;align-items:center;gap:14px;width:100%}
+.page-wrapper{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.28),0 0 0 1px var(--gb);transform-origin:center;will-change:transform;display:flex}
+body.night-mode .page-wrapper{background:#101614}
+.page{display:block;width:auto;height:auto;max-width:calc(100vw - 20px);max-height:calc(100dvh - var(--top) - var(--bot));filter:var(--filter);transition:filter .4s;-webkit-user-drag:none}
+.nav-btn{position:fixed;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;z-index:90;display:none;align-items:center;justify-content:center;font-size:24px;color:var(--ac);transition:transform .2s}
+.nav-btn:active{transform:scale(.9)}
+.nav-right{right:16px}.nav-left{left:16px}
+@media(min-width:769px){.desk{display:flex}.nav-btn{display:flex}.page{max-width:calc(50vw - 56px)}}
+.overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;z-index:2500}
+.overlay.active{display:flex}
+.overlay-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.38);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .3s}
+.modal-card,.juz-card{position:relative;width:100%;max-width:560px;max-height:90dvh;overflow-y:auto;background:var(--sheet);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid var(--gb);border-bottom:0;border-radius:34px 34px 0 0;padding:24px 18px calc(env(safe-area-inset-bottom,0px) + 18px);box-shadow:0 -10px 50px rgba(0,0,0,.25);animation:sheet .45s var(--ease);touch-action:pan-y;color:var(--tx)}
+.modal-card::before,.juz-card::before{content:'';display:block;width:38px;height:5px;border-radius:3px;background:var(--mut);opacity:.4;margin:-12px auto 16px;flex-shrink:0}
+.juz-card{height:82dvh;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:700px){.overlay{align-items:center}.modal-card,.juz-card{border-radius:34px;border-bottom:1px solid var(--gb)}}
+@keyframes sheet{from{transform:translateY(100%)}}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+@keyframes pop{from{opacity:0;transform:scale(1.12)}}
+.modal-header{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;margin-bottom:14px}
+.modal-header .ic{color:var(--ac);font-size:24px}
+.setting-item{background:var(--fill);border-radius:18px;margin:10px 0;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.storage-toggle{flex-direction:row;justify-content:space-between;align-items:center;cursor:pointer}
+.setting-label{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.setting-label .ic{font-size:20px;color:var(--ac)}
+.setting-value{display:flex;background:var(--fill);border-radius:13px;padding:3px;gap:2px}
+.pill-btn{flex:1;padding:8px 6px;border-radius:10px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:5px;transition:.25s;white-space:nowrap}
+.pill-btn.active,.tab-btn.active{background:var(--ac);color:var(--on);font-weight:700}
+.delete-option{margin-top:10px;padding:14px;border-radius:16px;background:color-mix(in srgb,var(--dg) 14%,transparent);color:var(--dg);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;cursor:pointer}
+.close-btn{width:100%;padding:15px;border-radius:16px;background:var(--fill);font-weight:600;font-size:15px;margin-top:14px}
+.tab-bar{display:flex;background:var(--fill);padding:3px;border-radius:14px;margin-bottom:14px;flex-shrink:0}
+.tab-btn{flex:1;padding:9px;border-radius:11px;font-size:14px;font-weight:600;color:var(--mut);transition:.25s}
+.tab-content{overflow-y:auto;flex:1;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+.grid-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--fill);border-radius:16px;cursor:pointer;transition:.2s}
+.grid-item:active{transform:scale(.95)}
+.grid-num{min-width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--ac2),var(--ac));color:var(--on);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.grid-name{font-size:14px;font-weight:600}
+.guide-intro{background:var(--fill);border-radius:16px;padding:14px;font-size:13.5px;color:var(--mut);line-height:1.9}
+.download-status{display:none;background:var(--fill);color:var(--ac);padding:10px;border-radius:12px;font-size:13px;text-align:center;margin-top:10px}
+.download-status.visible{display:block}
+.install-section{margin-top:16px}
+.install-title{display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:10px}
+.guide-item{display:flex;gap:10px;font-size:13px;margin-bottom:10px;line-height:1.8}
+.guide-item .ic{font-size:18px;color:var(--ac);margin-top:4px}
+.install-btn{display:none;width:100%;padding:14px;border-radius:16px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--on);font-weight:700;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.desc{color:var(--mut);font-size:13px;margin:16px 4px 8px}
+.dl-option{width:100%;padding:16px;border-radius:20px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--on);text-align:center;box-shadow:0 10px 26px -8px var(--ac)}
+.dl-main{font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
+.dl-main .ic{font-size:22px}
+.dl-sub{font-size:12px;opacity:.85;margin-top:2px}
+.dialog-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;padding:24px}
+.dialog-card{position:relative;z-index:1;width:100%;max-width:300px;background:var(--sheet);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid var(--gb);border-radius:24px;text-align:center;overflow:hidden;animation:pop .3s var(--ease);color:var(--tx)}
+.dialog-title{font-size:17px;font-weight:700;padding:20px 18px 6px}
+.dialog-message{font-size:13.5px;color:var(--mut);line-height:1.8;padding:0 18px 18px}
+.dialog-actions{display:flex;border-top:1px solid var(--gb)}
+.dialog-btn{flex:1;padding:14px;font-size:16px;font-weight:700;color:var(--ac)}
+.dialog-btn+.dialog-btn{border-inline-start:1px solid var(--gb)}
+.dialog-btn-cancel{font-weight:400;color:var(--mut)}
+.splash-overlay{align-items:center;z-index:3000}
+.splash-overlay .overlay-backdrop{display:none}
+.splash-card{position:relative;width:100%;max-width:420px;padding:24px 28px calc(env(safe-area-inset-bottom,0px) + 28px);text-align:center;animation:rise .8s var(--ease)}
+.splash-logo{width:104px;height:104px;border-radius:26px;box-shadow:0 18px 50px -10px var(--ac),0 0 0 1px var(--gb);margin-bottom:22px}
+.splash-title{font-family:'Amiri',serif;font-size:50px;font-weight:700;line-height:1.5;background:linear-gradient(135deg,var(--ac2),var(--ac) 55%,var(--ac2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.splash-divider{display:flex;align-items:center;gap:12px;max-width:200px;margin:2px auto 12px;color:var(--ac2);font-size:12px}
+.splash-divider::before,.splash-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--ac2),transparent)}
+.splash-subtitle{color:var(--mut);font-size:15px;margin-bottom:38px}
+.splash-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;margin:10px 0;border-radius:27px;font-size:16px;font-weight:700;background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:transform .2s}
+.splash-btn:active{transform:scale(.96)}
+.splash-btn .ic{font-size:20px}
+.splash-btn-primary{background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--on);border:0;box-shadow:0 14px 30px -10px var(--ac)}
+.splash-link{margin-top:26px;font-size:12px}
+.splash-link a{color:var(--mut);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="theme-modern">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.5.5 0 00.12-.61l-1.92-3.32a.5.5 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.5.5 0 00-.48-.41h-3.84a.5.5 0 00-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.5.5 0 00-.59.22L2.74 8.87a.5.5 0 00.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.5.5 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.5.5 0 00-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+<symbol id="i-full" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></symbol>
+<symbol id="i-prev" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M6 19a2 2 0 002 2h8a2 2 0 002-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M17 1H7a2 2 0 00-2 2v18a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2zm0 18H7V5h10v14z"/></symbol>
+<symbol id="i-desk" viewBox="0 0 24 24"><path d="M20 18a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></symbol>
+<symbol id="i-theme" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18c1 0 1.5-.8 1.5-1.5 0-.4-.2-.7-.4-1-.2-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16a5 5 0 005-5c0-4-4-8-9-8zM6.5 12a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm3-4a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm3 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM2 13h2v-2H2v2zm18 0h2v-2h-2v2zM11 2v2h2V2h-2zm0 18v2h2v-2h-2zM5.6 4.2L4.2 5.6l1.4 1.4 1.4-1.4-1.4-1.4zm12.8 12.8l-1.4 1.4 1.4 1.4 1.4-1.4-1.4-1.4zM18.4 7l1.4-1.4-1.4-1.4L17 5.6 18.4 7zM5.6 19.8L7 18.4 5.6 17l-1.4 1.4 1.4 1.4z"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3c-.3-1.3-.8-2.5-1.4-3.6A8 8 0 0118.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8.2 8.2 0 010-4h3.4a16 16 0 000 4H4.3zm.8 2h3c.3 1.300.8 2.500 1.400 3.600A8 8 0 015.100 16zM8.100 8h-3a8 8 0 014.400-3.600C8.900 5.500 8.400 6.700 8.100 8zM12 20c-.8-1.200-1.500-2.500-1.900-4h3.800c-.4 1.500-1.100 2.800-1.900 4zm2.300-6H9.700a14 14 0 010-4h4.600a14 14 0 010 4zm.2 5.600c.6-1.100 1.100-2.300 1.400-3.600h3a8 8 0 01-4.400 3.600zM16.300 14a16 16 0 000-4h3.400a8.200 8.200 0 010 4h-3.400z"/></symbol>
+<symbol id="i-disk" viewBox="0 0 24 24"><path d="M4 7c0-2 3.600-3 8-3s8 1 8 3-3.600 3-8 3-8-1-8-3zm0 3.500c1.600 1.200 4.500 1.800 8 1.800s6.400-.6 8-1.800V14c0 2-3.600 3-8 3s-8-1-8-3v-3.500zm0 7c1.600 1.200 4.500 1.800 8 1.800s6.400-.6 8-1.800V18c0 2-3.600 3-8 3s-8-1-8-3v-.5z"/></symbol>
+<symbol id="i-tg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.640 6.800c-.150 1.580-.800 5.420-1.130 7.190-.140.750-.420 1-.680 1.030-.580.050-1.020-.380-1.580-.750-.880-.580-1.380-.940-2.230-1.500-.990-.650-.350-1.010.220-1.590.150-.150 2.710-2.480 2.760-2.690.010-.030.010-.140-.050-.200-.060-.060-.150-.040-.220-.020-.090.020-1.490.950-4.220 2.790-.400.270-.760.400-1.080.390-.360-.100-1.040-.200-1.550-.370-.630-.200-1.120-.310-1.080-.660.020-.180.270-.370.740-.560 2.920-1.270 4.860-2.110 5.830-2.510 2.780-1.160 3.350-1.360 3.730-1.360.080 0 .270.020.390.120.100.080.130.190.140.270-.010.060.010.240 0 .240z"/></symbol>
+</svg>
+
+<div class="overlay splash-overlay active" id="splashOverlay" role="dialog" aria-modal="true">
+  <div class="overlay-backdrop"></div>
+  <div class="splash-card">
+    <img class="splash-logo" src="./icons/maskable_icon_x192.png" alt="">
+    <div class="splash-title">القرآن الكريم</div>
+    <div class="splash-divider">◆</div>
+    <div class="splash-subtitle" data-i18n="splashSubtitle"></div>
+    <button class="splash-btn splash-btn-primary" id="splashContinue"><svg class="ic"><use href="#i-play"/></svg><span data-i18n="splashContinue"></span></button>
+    <button class="splash-btn" id="splashJuzList"><svg class="ic"><use href="#i-list"/></svg><span data-i18n="splashJuz"></span></button>
+    <div class="splash-link"><a href="https://t.me/YBAKHTIAR" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-tg"/></svg><span data-i18n="splashLink"></span></a></div>
+  </div>
+</div>
+
+<div class="overlay" id="juzOverlay" role="dialog" aria-modal="true">
+  <div class="overlay-backdrop"></div>
+  <div class="juz-card">
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tabJuzBtn" data-i18n="tabJuz"></button>
+      <button class="tab-btn" id="tabSurahBtn" data-i18n="tabSurah"></button>
+    </div>
+    <div class="tab-content" id="juzTabContent"><div class="grid" id="juzGrid"></div></div>
+    <div class="tab-content" id="surahTabContent" style="display:none"><div class="grid" id="surahGrid"></div></div>
+  </div>
+</div>
+
+<div class="overlay" id="settingsOverlay" role="dialog" aria-modal="true">
+  <div class="overlay-backdrop"></div>
+  <div class="modal-card">
+    <div class="modal-header"><svg class="ic"><use href="#i-gear"/></svg><span data-i18n="settingsTitle"></span></div>
+    <div class="setting-item">
+      <span class="setting-label"><svg class="ic"><use href="#i-theme"/></svg><span data-i18n="themeLabel"></span></span>
+      <span class="setting-value">
+        <button class="pill-btn" id="themeZardBtn" data-i18n="themeZard"></button>
+        <button class="pill-btn" id="themeAbiBtn" data-i18n="themeAbi"></button>
+        <button class="pill-btn" id="themeModernBtn" data-i18n="themeModern"></button>
+      </span>
+    </div>
+    <div class="setting-item">
+      <span class="setting-label"><svg class="ic"><use href="#i-sun"/></svg><span data-i18n="appearanceLabel"></span></span>
+      <span class="setting-value">
+        <button class="pill-btn" id="themeDayBtn"><svg class="ic"><use href="#i-sun"/></svg><span data-i18n="dayMode"></span></button>
+        <button class="pill-btn" id="themeNightBtn"><svg class="ic"><use href="#i-moon"/></svg><span data-i18n="nightMode"></span></button>
+      </span>
+    </div>
+    <div class="setting-item">
+      <span class="setting-label"><svg class="ic"><use href="#i-globe"/></svg><span data-i18n="languageLabel"></span></span>
+      <span class="setting-value">
+        <button class="pill-btn" id="langFa">فارسی</button>
+        <button class="pill-btn" id="langAr">العربية</button>
+      </span>
+    </div>
+    <div class="setting-item storage-toggle" id="storageToggle" style="display:none" role="button" tabindex="0">
+      <span class="setting-label"><svg class="ic"><use href="#i-disk"/></svg><span data-i18n="storageLabel"></span></span>
+      <svg class="ic" style="width:20px;height:20px;color:var(--mut)"><use href="#i-chev"/></svg>
+    </div>
+    <div id="deleteOptionContainer" style="display:none">
+      <div class="delete-option" id="deleteOfflineBtn" role="button" tabindex="0"><svg class="ic"><use href="#i-trash"/></svg><span data-i18n="deleteBtn"></span></div>
+    </div>
+    <button class="close-btn" id="settingsClose" data-i18n="closeBtn"></button>
+  </div>
+</div>
+
+<div class="overlay" id="downloadOverlay" role="dialog" aria-modal="true">
+  <div class="overlay-backdrop"></div>
+  <div class="modal-card">
+    <div class="modal-header"><svg class="ic"><use href="#i-down"/></svg><span data-i18n="downloadTitle"></span></div>
+    <div class="guide-intro" data-i18n="offlineGuideIntro"></div>
+    <div class="download-status" id="downloadStatus"></div>
+    <div class="install-section">
+      <div class="install-title"><svg class="ic"><use href="#i-phone"/></svg><span data-i18n="installTitle"></span></div>
+      <div class="guide-item"><svg class="ic"><use href="#i-phone"/></svg><span data-i18n="guideAndroid"></span></div>
+      <div class="guide-item"><svg class="ic"><use href="#i-phone"/></svg><span data-i18n="guideIos"></span></div>
+      <div class="guide-item"><svg class="ic"><use href="#i-desk"/></svg><span data-i18n="guideDesktop"></span></div>
+      <button class="install-btn" id="installPwaBtn"><svg class="ic"><use href="#i-phone"/></svg><span data-i18n="installBtn"></span></button>
+    </div>
+    <p class="desc" data-i18n="downloadDesc"></p>
+    <button class="dl-option" id="dlHQ">
+      <div class="dl-main"><svg class="ic"><use href="#i-desk"/></svg><span data-i18n="hq"></span></div>
+      <div class="dl-sub" data-i18n="hqSub"></div>
+    </button>
+    <button class="close-btn" id="downloadClose" data-i18n="cancel"></button>
+  </div>
+</div>
+
+<header class="hdr glass" id="hdr">
+  <span class="hdr-juz" id="hdrJuz"></span>
+  <div class="hdr-mid"><div class="hdr-surah" id="hdrSurah"></div><div class="hdr-pg" id="pgNum"></div></div>
+  <button class="icon-btn" id="btnQuick" aria-label="theme"><svg class="ic"><use id="quickIc" href="#i-moon"/></svg></button>
+  <i class="hdr-bar" id="pgBar"></i>
+</header>
+<nav class="dock glass" id="dock">
+  <button class="dock-btn" id="btnMenu"><svg class="ic"><use href="#i-list"/></svg><span data-i18n="idxShort"></span></button>
+  <button class="dock-btn btn-download" id="btnDownload"><svg class="ic"><use href="#i-down"/></svg><span data-i18n="downloadBtnTitle"></span></button>
+  <button class="dock-btn" id="btnSettings"><svg class="ic"><use href="#i-gear"/></svg><span data-i18n="settingsTitle"></span></button>
+  <button class="dock-btn desk" id="btnFullscreen"><svg class="ic"><use href="#i-full"/></svg><span data-i18n="fullscreenTitle"></span></button>
+</nav>
+<div class="progress-pill glass" id="progressPill" role="status" aria-live="polite"></div>
+
+<div class="main-content" id="swipeArea">
+  <button class="nav-btn nav-right glass" id="navRight" data-i18n-t="prevTitle"><svg class="ic"><use href="#i-next"/></svg></button>
+  <div class="quran-container">
+    <div class="page-wrapper" id="rightWrapper"><img id="rightPage" class="page" alt="" draggable="false" decoding="async"></div>
+    <div class="page-wrapper" id="leftWrapper"><img id="leftPage" class="page" alt="" draggable="false" decoding="async"></div>
+  </div>
+  <button class="nav-btn nav-left glass" id="navLeft" data-i18n-t="nextTitle"><svg class="ic"><use href="#i-prev"/></svg></button>
+</div>
+
+<script>
+// ================== CONFIG ==================
+const totalFiles = 612;
+const FIRST_FILE = 3;                                   // فایل‌های ۱ و ۲ جلد هستند
+const TOTAL = totalFiles - FIRST_FILE + 1;              // تعداد صفحه‌های قابل دانلود
+const TOLERANCE = 3;                                    // حداکثر صفحهٔ ناقص برای «کامل» حساب شدن
+const IMAGE_BASE = 'https://raw.githubusercontent.com/ysrbkht/quran/main/images_high/';
+const IMAGE_CACHE_NAME = 'quran-cache-hq-v1';           // باید با sw.js یکی باشد
+const $ = id => document.getElementById(id);
+const IMG_EXT = 'jpg';                                  // یا 'webp'
+let tapT;
+function updateChrome() {
+  const p = currentFile - 2;
+  let s = 0; for (let i = 0; i < 114; i++) if (surahPages[i] <= p) s = i;
+  const j = currentFile >= 588 ? 30 : Math.min(29, Math.max(1, Math.floor((currentFile - 4) / 20) + 1));
+  $('hdrSurah').textContent = surahNames[currentLang][s];
+  $('hdrJuz').textContent = T().juz + fmt(j);
+  $('pgNum').textContent = T().pageOf.replace('{n}', fmt(p)).replace('{t}', fmt(totalFiles - 2));
+  $('pgBar').style.width = ((currentFile - FIRST_FILE) / (totalFiles - FIRST_FILE) * 100) + '%';
+}
+
+
+let currentFile = FIRST_FILE;
+let downloadStatus = 'none';                            // none | partial | complete
+let downloading = false;
+let deferredPrompt = null;
+const objectUrls = { right: null, left: null };
+const loadToken = { right: 0, left: 0 };
+const isStandalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+if ('serviceWorker' in navigator) {
+  addEventListener('load', () => navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(e => console.log('SW error', e)));
+}
+addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); deferredPrompt = e;
+  if (!isStandalone) $('installPwaBtn').style.display = 'flex';
+});
+
+// ================== TRANSLATIONS ==================
+const translations = {
+  fa: { idxShort: 'فهرست', pageOf: 'صفحه {n} از {t}',
+    splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید', splashContinue: 'ادامه مطالعه', splashJuz: 'فهرست اجزاء و سوره‌ها', splashLink: 'پیشنهادات و نظریات',
+    settingsTitle: 'تنظیمات', themeLabel: 'تم', languageLabel: 'زبان', appearanceLabel: 'ظاهر', storageLabel: 'مدیریت حافظه', deleteBtn: 'حذف فایل‌های آفلاین', closeBtn: 'بستن',
+    downloadTitle: 'راهنمای نصب و دانلود آفلاین', downloadDesc: 'برای مطالعهٔ آفلاین، فایل‌ها را دانلود کنید:', hq: 'دانلود آفلاین (۵۰۰ مگابایت)', hqSub: 'کیفیت بالا', cancel: 'لغو', ok: 'باشه',
+    confirmDeleteTitle: 'تأیید', confirmDeleteMsg: 'تمام فایل‌های دانلود شده حذف می‌شوند. ادامه می‌دهید؟',
+    confirmDownloadTitle: 'دانلود آفلاین', confirmDownloadMsg: 'فایل‌های آفلاین حدود ۵۰۰ مگابایت حجم دارد. ادامه می‌دهید؟',
+    confirmResumeTitle: 'ادامه دانلود', confirmResumeMsg: 'شما قبلاً {count} صفحه را دانلود کرده‌اید. ادامه دانلود از همان‌جا؟',
+    noSpaceMsg: 'فضای خالی دستگاه برای دانلود (حدود ۵۰۰ مگابایت) کافی نیست.',
+    partialMsg: '{count} صفحه دانلود نشد. اینترنت خود را بررسی کنید و دوباره تلاش کنید.', partialStatus: 'دانلود ناقص: {count} از {total}',
+    tabJuz: 'اجزاء', tabSurah: 'سوره‌ها', juz: 'جزء ', page: 'صفحه ', menuTitle: 'فهرست اجزاء و سوره‌ها', downloadBtnTitle: 'دانلود آفلاین', fullscreenTitle: 'تمام صفحه', prevTitle: 'صفحه قبل', nextTitle: 'صفحه بعد',
+    themeZard: 'زرد', themeAbi: 'آبی', themeModern: 'مدرن', dayMode: 'روز', nightMode: 'شب',
+    downloadSuccess: 'دانلود با موفقیت انجام شد!', deleteSuccess: 'فایل‌های آفلاین حذف شدند.', downloadError: 'خطا در دانلود! لطفاً دوباره تلاش کنید.', deleteError: 'خطا در حذف!',
+    installTitle: 'راهنمای نصب', installBtn: 'نصب اپلیکیشن',
+    guideAndroid: 'اندروید: روی دکمه نصب اپلیکیشن کلیک نمایید یا از منوی مرورگر «افزودن به صفحه اصلی» را انتخاب کنید',
+    guideIos: 'آیفون/آیپد: گزینه Share را بزنید بعد گزینه Add to Home Screen.',
+    guideDesktop: 'دسکتاپ: روی دکمه نصب اپلیکیشن یا روی آیکون نصب در نوار آدرس کلیک نمایید',
+    offlineGuideIntro: 'برای استفاده آفلاین از برنامه، ابتدا آن را نصب کرده و به صفحه اصلی اضافه کنید. سپس از طریق صفحه اصلی برنامه را باز کرده و فایل‌های آفلاین را دانلود نمایید. پس از آن می‌توانید در مراحل بعدی بدون نیاز به اینترنت از قرآن استفاده کنید.',
+    downloading: 'در حال دانلود...', progress: 'پیشرفت: {current} از {total}'
+  },
+  ar: { idxShort: 'الفهرس', pageOf: 'صفحة {n} من {t}',
+    splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم', splashContinue: 'متابعة القراءة', splashJuz: 'قائمة الأجزاء والسور', splashLink: 'اقتراحات وملاحظات',
+    settingsTitle: 'الإعدادات', themeLabel: 'السمة', languageLabel: 'اللغة', appearanceLabel: 'المظهر', storageLabel: 'إدارة التخزين', deleteBtn: 'حذف الملفات المحفوظة', closeBtn: 'إغلاق',
+    downloadTitle: 'دليل التثبيت والتنزيل دون اتصال', downloadDesc: 'نزّل الملفات للقراءة دون اتصال:', hq: 'تنزيل دون اتصال (٥٠٠ م.ب)', hqSub: 'جودة عالية', cancel: 'إلغاء', ok: 'موافق',
+    confirmDeleteTitle: 'تأكيد', confirmDeleteMsg: 'سيتم حذف جميع الملفات التي تم تنزيلها. هل تريد المتابعة؟',
+    confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال', confirmDownloadMsg: 'حجم الملفات حوالي ٥٠٠ م.ب. هل تريد المتابعة؟',
+    confirmResumeTitle: 'متابعة التنزيل', confirmResumeMsg: 'لقد نزّلت {count} صفحة بالفعل. متابعة من حيث توقفت؟',
+    noSpaceMsg: 'المساحة المتاحة على الجهاز غير كافية (حوالي ٥٠٠ م.ب).',
+    partialMsg: 'تعذّر تنزيل {count} صفحة. تحقق من الاتصال وحاول مرة أخرى.', partialStatus: 'تنزيل غير مكتمل: {count} من {total}',
+    tabJuz: 'الأجزاء', tabSurah: 'السور', juz: 'الجزء ', page: 'صفحة ', menuTitle: 'قائمة الأجزاء والسور', downloadBtnTitle: 'تحميل دون اتصال', fullscreenTitle: 'ملء الشاشة', prevTitle: 'الصفحة السابقة', nextTitle: 'الصفحة التالية',
+    themeZard: 'الأصفر', themeAbi: 'الأزرق', themeModern: 'الحديثة', dayMode: 'النهار', nightMode: 'الليل',
+    downloadSuccess: 'تم التحميل بنجاح!', deleteSuccess: 'تم حذف الملفات غير المتصلة.', downloadError: 'خطأ في التحميل! حاول مرة أخرى.', deleteError: 'خطأ في الحذف!',
+    installTitle: 'دليل التثبيت', installBtn: 'تثبيت التطبيق',
+    guideAndroid: 'أندرويد: انقر على زر تثبيت التطبيق أو اختر "إضافة إلى الشاشة الرئيسية" من قائمة المتصفح',
+    guideIos: 'آيفون/آيباد: اضغط على زر المشاركة ثم اختر "Add to Home Screen".',
+    guideDesktop: 'سطح المكتب: انقر على زر تثبيت التطبيق أو على أيقونة التثبيت في شريط العنوان',
+    offlineGuideIntro: 'لاستخدام التطبيق دون اتصال، قم أولاً بتثبيته وإضافته إلى الشاشة الرئيسية. ثم افتح التطبيق من الشاشة الرئيسية وقم بتنزيل الملفات غير المتصلة بالإنترنت. بعد ذلك يمكنك استخدام القرآن في المرات اللاحقة بدون الحاجة إلى الإنترنت.',
+    downloading: 'جاري التحميل...', progress: 'التقدم: {current} من {total}'
+  }
+};
+
+let currentLang = localStorage.getItem('quran-language') === 'ar' ? 'ar' : 'fa';
+let themeStyle = localStorage.getItem('quran-theme-style');
+if (!['zard', 'abi', 'modern'].includes(themeStyle)) themeStyle = 'modern';
+let themeMode = localStorage.getItem('quran-theme-mode') === 'night' ? 'night' : 'day';
+
+const T = () => translations[currentLang];
+const fmt = n => String(n).replace(/\d/g, d => (currentLang === 'fa' ? '۰۱۲۳۴۵۶۷۸۹' : '٠١٢٣٤٥٦٧٨٩')[d]);
+const isMobile = () => innerWidth <= 768;
+
+const juzOrdinals = {
+  fa: ['اول','دوم','سوم','چهارم','پنجم','ششم','هفتم','هشتم','نهم','دهم','یازدهم','دوازدهم','سیزدهم','چهاردهم','پانزدهم','شانزدهم','هفدهم','هجدهم','نوزدهم','بیستم','بیست‌و‌یکم','بیست‌و‌دوم','بیست‌و‌سوم','بیست‌و‌چهارم','بیست‌و‌پنجم','بیست‌و‌ششم','بیست‌و‌هفتم','بیست‌و‌هشتم','بیست‌و‌نهم','سی‌ام'],
+  ar: ['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر','الحادي عشر','الثاني عشر','الثالث عشر','الرابع عشر','الخامس عشر','السادس عشر','السابع عشر','الثامن عشر','التاسع عشر','العشرون','الحادي والعشرون','الثاني والعشرون','الثالث والعشرون','الرابع والعشرون','الخامس والعشرون','السادس والعشرون','السابع والعشرون','الثامن والعشرون','التاسع والعشرون','الثلاثون']
+};
+
+const surahPages = [1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610];
+const surahNames = {
+  ar: ["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"],
+  fa: ["فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"]
+};
+if (surahPages.length !== 114 || surahNames.ar.length !== 114 || surahNames.fa.length !== 114) console.warn('Surah data must have 114 items');
+
+// ================== i18n ==================
+function applyTranslations() {
+  const t = T();
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n]; });
+  document.querySelectorAll('[data-i18n-t]').forEach(el => { const v = t[el.dataset.i18nT]; el.title = v; el.setAttribute('aria-label', v); });
+}
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('quran-language', lang);
+  applyTranslations();
+  $('langFa').classList.toggle('active', lang === 'fa');
+  $('langAr').classList.toggle('active', lang === 'ar');
+  buildJuzGrid(); buildSurahGrid(); updateStatusUI(); updateChrome();
+}
+
+// ================== Dialogs / overlays ==================
+function dialog(message, title, cancelable) {
+  return new Promise(resolve => {
+    const o = document.createElement('div');
+    o.className = 'dialog-overlay'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-modal', 'true');
+    o.innerHTML = '<div class="overlay-backdrop"></div><div class="dialog-card"><div class="dialog-title"></div><div class="dialog-message"></div><div class="dialog-actions"></div></div>';
+    o.querySelector('.dialog-title').textContent = title;
+    o.querySelector('.dialog-message').textContent = message;
+    const actions = o.querySelector('.dialog-actions');
+    if (!cancelable) actions.classList.add('center');
+    const done = v => { o.remove(); resolve(v); };
+    const add = (cls, text, v) => { const b = document.createElement('button'); b.className = 'dialog-btn ' + cls; b.textContent = text; b.onclick = () => done(v); actions.appendChild(b); };
+    if (cancelable) add('dialog-btn-cancel', T().cancel, false);
+    add('dialog-btn-ok', T().ok, true);
+    o.querySelector('.overlay-backdrop').onclick = () => done(false);
+    document.body.appendChild(o);
+  });
+}
+const OVERLAYS = ['juzOverlay', 'settingsOverlay', 'downloadOverlay'];
+function openOverlay(id) { $(id).classList.add('active'); if (id === 'downloadOverlay') updateStatusUI(); }
+function closeOverlay(id) { $(id).classList.remove('active'); }
+function closeActiveOverlay() {
+  const id = OVERLAYS.find(i => $(i).classList.contains('active'));
+  if (id) closeOverlay(id);
+  return !!id;
+}
+
+// ================== Theme ==================
+function applyTheme() {
+  const b = document.body;
+  b.classList.remove('theme-zard', 'theme-abi', 'theme-modern', 'night-mode');
+  b.classList.add('theme-' + themeStyle);
+  if (themeMode === 'night') b.classList.add('night-mode');
+  const colors = { zard: ['#F8F1E3', '#14100A'], abi: ['#EAF2FC', '#070D1B'], modern: ['#EDF3EF', '#06100D'] };
+  $('theme-color-meta').setAttribute('content', colors[themeStyle][themeMode === 'night' ? 1 : 0]);
+  ['zard', 'abi', 'modern'].forEach(s => $('theme' + s[0].toUpperCase() + s.slice(1) + 'Btn').classList.toggle('active', themeStyle === s));
+  $('quickIc').setAttribute('href', themeMode === 'night' ? '#i-sun' : '#i-moon');
+  $('themeDayBtn').classList.toggle('active', themeMode === 'day');
+  $('themeNightBtn').classList.toggle('active', themeMode === 'night');
+}
+function setThemeStyle(s) { themeStyle = s; localStorage.setItem('quran-theme-style', s); applyTheme(); }
+function setThemeMode(m) { themeMode = m; localStorage.setItem('quran-theme-mode', m); applyTheme(); }
+
+// ================== Pages ==================
+const fileName = n => 'Quran' + String(n).padStart(3, '0') + '.' + IMG_EXT;
+
+async function loadPageImage(imgId, n, side) {
+  const img = $(imgId);
+  const token = ++loadToken[side];
+  img.alt = T().page + fmt(n);
+  let objUrl = null;
+  try {
+    const cache = await caches.open(IMAGE_CACHE_NAME);
+    const hit = await cache.match('images/' + fileName(n));
+    if (token !== loadToken[side]) return;
+    if (hit) {
+      const blob = await hit.blob();
+      if (token !== loadToken[side]) return;
+      objUrl = URL.createObjectURL(blob);
+    }
+  } catch (e) { /* ادامه با شبکه */ }
+  if (token !== loadToken[side]) { if (objUrl) URL.revokeObjectURL(objUrl); return; }
+  if (objectUrls[side]) URL.revokeObjectURL(objectUrls[side]);
+  objectUrls[side] = objUrl;
+  img.src = objUrl || (IMAGE_BASE + fileName(n));
+}
+
+let preloadTimer;
+function preloadAdjacent() {
+  clearTimeout(preloadTimer);
+  if (downloadStatus === 'complete') return;
+  preloadTimer = setTimeout(() => {
+    const m = isMobile();
+    const targets = m ? [currentFile + 1, currentFile - 1] : [currentFile + 2, currentFile + 3, currentFile - 2, currentFile - 1];
+    targets.filter(f => f >= FIRST_FILE && f <= totalFiles).forEach(f => { new Image().src = IMAGE_BASE + fileName(f); });
+  }, 500);
+}
+
+function updatePages() {
+  resetZoom();
+  currentFile = Math.min(Math.max(currentFile, FIRST_FILE), totalFiles);
+  const rightW = $('rightWrapper'), leftW = $('leftWrapper');
+  if (isMobile()) {
+    loadPageImage('rightPage', currentFile, 'right');
+    leftW.style.display = 'none';
+  } else {
+    if (currentFile % 2 === 0) currentFile--;           // صفحهٔ راست همیشه فرد است
+    loadPageImage('rightPage', currentFile, 'right');
+    const left = currentFile + 1;
+    if (left <= totalFiles) { loadPageImage('leftPage', left, 'left'); leftW.style.display = 'flex'; }
+    else leftW.style.display = 'none';
+  }
+  rightW.style.display = 'flex';
+  localStorage.setItem('lastQuranFile', String(currentFile));
+  if (location.protocol !== 'file:') { try { history.replaceState(history.state, '', '#' + currentFile); } catch (e) {} }
+  updateChrome();
+  preloadAdjacent();
+}
+function nextPage() { const s = isMobile() ? 1 : 2; if (currentFile + s > totalFiles) return; currentFile += s; updatePages(); }
+function prevPage() { const s = isMobile() ? 1 : 2; if (currentFile - s < FIRST_FILE) return; currentFile -= s; updatePages(); }
+function goToFile(n) { currentFile = n; updatePages(); closeOverlay('juzOverlay'); }
+
+// ================== Zoom & pan ==================
+let scale = 1, tx = 0, ty = 0, lastTx = 0, lastTy = 0, pinchDist = null, panning = false, lastTap = 0, moved = false;
+function applyTransform(smooth) {
+  ['rightWrapper', 'leftWrapper'].forEach(id => {
+    const w = $(id);
+    w.style.transition = smooth ? 'transform .3s ease-out' : 'none';
+    w.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+  });
+}
+function resetZoom() { scale = 1; tx = ty = lastTx = lastTy = 0; applyTransform(true); }
+
+// ================== Storage / download ==================
+async function getFileSet() {
+  const set = new Set();
+  try {
+    const cache = await caches.open(IMAGE_CACHE_NAME);
+    (await cache.keys()).forEach(r => {
+      const m = r.url.match(/Quran(\d{3})\.(?:jpg|webp)/);
+      if (m) { const n = parseInt(m[1], 10); if (n >= FIRST_FILE && n <= totalFiles) set.add(n); }
+    });
+  } catch (e) {}
+  return set;
+}
+async function checkStatus() {
+  const count = (await getFileSet()).size;
+  return { count, status: count >= TOTAL - TOLERANCE ? 'complete' : count > 0 ? 'partial' : 'none' };
+}
+function updateStorageVisibility() {
+  $('storageToggle').style.display = downloadStatus === 'none' ? 'none' : 'flex';
+  if (downloadStatus === 'none') $('deleteOptionContainer').style.display = 'none';
+}
+async function updateStatusUI() {
+  const el = $('downloadStatus');
+  if (downloadStatus === 'partial') {
+    const { count } = await checkStatus();
+    el.textContent = T().partialStatus.replace('{count}', fmt(count)).replace('{total}', fmt(TOTAL));
+    el.classList.add('visible');
+  } else el.classList.remove('visible');
+}
+function setDownloadedUI() {
+  const b = $('btnDownload');
+  b.style.display = 'none'; b.classList.add('done');
+  downloadStatus = 'complete';
+  updateStorageVisibility(); updateStatusUI();
+}
+function resetDownloadedUI() {
+  const b = $('btnDownload');
+  b.style.display = 'flex'; b.classList.remove('done');
+  downloadStatus = 'none';
+  updateStorageVisibility(); updateStatusUI();
+}
+
+async function fetchImageToCache(name, cache) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const resp = await fetch(IMAGE_BASE + name, { mode: 'cors', cache: 'no-store' });
+      if (resp.ok && (resp.headers.get('content-type') || '').startsWith('image/')) {
+        await cache.put('images/' + name, resp);
+        return true;
+      }
+    } catch (e) {}
+    await new Promise(r => setTimeout(r, 400 * (attempt + 1)));
+  }
+  return false;
+}
+
+async function startDownload() {
+  if (downloading) return;
+  closeOverlay('downloadOverlay');
+  const t = T();
+  if (navigator.storage && navigator.storage.estimate) {
+    try {
+      const { quota, usage } = await navigator.storage.estimate();
+      if (quota && quota - usage < 600 * 1048576) { await dialog(t.noSpaceMsg, t.confirmDownloadTitle); return; }
+    } catch (e) {}
+  }
+  const existing = await getFileSet();
+  const resume = existing.size > 0;
+  const ok = await dialog(resume ? t.confirmResumeMsg.replace('{count}', fmt(existing.size)) : t.confirmDownloadMsg, resume ? t.confirmResumeTitle : t.confirmDownloadTitle, true);
+  if (!ok) return;
+
+  downloading = true;
+  if (navigator.storage && navigator.storage.persist) { try { await navigator.storage.persist(); } catch (e) {} }
+  const dlBtn = $('btnDownload'), pill = $('progressPill');
+  dlBtn.style.pointerEvents = 'none';
+  pill.style.display = 'block';
+
+  let done = existing.size, failed = 0;
+  const show = () => { pill.textContent = t.progress.replace('{current}', fmt(Math.min(done + failed, TOTAL))).replace('{total}', fmt(TOTAL)); };
+  show();
+
+  try {
+    const cache = await caches.open(IMAGE_CACHE_NAME);
+    const queue = [];
+    for (let n = FIRST_FILE; n <= totalFiles; n++) if (!existing.has(n)) queue.push(n);
+    let idx = 0;
+    const worker = async () => {
+      while (idx < queue.length) {
+        const n = queue[idx++];
+        if (await fetchImageToCache(fileName(n), cache)) done++; else failed++;
+        show();
+      }
+    };
+    await Promise.all(Array.from({ length: 6 }, worker));
+
+    const st = await checkStatus();
+    downloadStatus = st.status;
+    if (st.status === 'complete') {
+      setDownloadedUI();
+      await dialog(t.downloadSuccess, t.confirmDownloadTitle);
+      updatePages();
+    } else {
+      updateStorageVisibility(); updateStatusUI();
+      await dialog(t.partialMsg.replace('{count}', fmt(TOTAL - st.count)), t.confirmDownloadTitle);
+    }
+  } catch (err) {
+    console.error('Download error', err);
+    const st = await checkStatus();
+    downloadStatus = st.status === 'complete' ? 'partial' : st.status;
+    updateStorageVisibility(); updateStatusUI();
+    await dialog(t.downloadError, t.confirmDownloadTitle);
+  } finally {
+    downloading = false;
+    pill.style.display = 'none';
+    dlBtn.style.pointerEvents = 'auto';
+  }
+}
+
+async function deleteOfflineFiles() {
+  const t = T();
+  if (!(await dialog(t.confirmDeleteMsg, t.confirmDeleteTitle, true))) return;
+  try {
+    await caches.delete(IMAGE_CACHE_NAME);
+    resetDownloadedUI();
+    await dialog(t.deleteSuccess, t.confirmDeleteTitle);
+    updatePages();
+  } catch (e) {
+    await dialog(t.deleteError, t.confirmDeleteTitle);
+  }
+}
+
+// ================== Grids ==================
+function gridItem(num, name, onSelect) {
+  const d = document.createElement('div');
+  d.className = 'grid-item'; d.setAttribute('role', 'button'); d.tabIndex = 0;
+  const a = document.createElement('div'); a.className = 'grid-num'; a.textContent = fmt(num);
+  const b = document.createElement('div'); b.className = 'grid-name'; b.textContent = name;
+  d.append(a, b);
+  d.onclick = onSelect;
+  d.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(); } };
+  return d;
+}
+function buildJuzGrid() {
+  const g = $('juzGrid'); g.textContent = '';
+  for (let i = 1; i <= 30; i++) {
+    const start = i === 1 ? 3 : i === 30 ? 588 : 4 + (i - 1) * 20;
+    g.appendChild(gridItem(i, T().juz + juzOrdinals[currentLang][i - 1], () => goToFile(start)));
+  }
+}
+function buildSurahGrid() {
+  const g = $('surahGrid'); g.textContent = '';
+  for (let i = 0; i < 114; i++) g.appendChild(gridItem(i + 1, surahNames[currentLang][i], () => goToFile(surahPages[i] + 2)));
+}
+
+// ================== Events ==================
+$('btnMenu').onclick = () => openOverlay('juzOverlay');
+$('btnQuick').onclick = () => setThemeMode(themeMode === 'day' ? 'night' : 'day');
+$('btnSettings').onclick = () => openOverlay('settingsOverlay');
+$('btnDownload').onclick = () => openOverlay('downloadOverlay');
+$('btnFullscreen').onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); else document.exitFullscreen(); };
+$('navRight').onclick = prevPage;
+$('navLeft').onclick = nextPage;
+$('splashContinue').onclick = () => closeOverlay('splashOverlay');
+$('splashJuzList').onclick = () => { closeOverlay('splashOverlay'); openOverlay('juzOverlay'); };
+$('themeZardBtn').onclick = () => setThemeStyle('zard');
+$('themeAbiBtn').onclick = () => setThemeStyle('abi');
+$('themeModernBtn').onclick = () => setThemeStyle('modern');
+$('themeDayBtn').onclick = () => setThemeMode('day');
+$('themeNightBtn').onclick = () => setThemeMode('night');
+$('langFa').onclick = () => setLanguage('fa');
+$('langAr').onclick = () => setLanguage('ar');
+$('settingsClose').onclick = () => closeOverlay('settingsOverlay');
+$('downloadClose').onclick = () => closeOverlay('downloadOverlay');
+$('dlHQ').onclick = () => startDownload();
+$('deleteOfflineBtn').onclick = deleteOfflineFiles;
+$('installPwaBtn').onclick = async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt(); await deferredPrompt.userChoice;
+  deferredPrompt = null; $('installPwaBtn').style.display = 'none';
+};
+const toggleDelete = () => { const c = $('deleteOptionContainer'); c.style.display = c.style.display === 'block' ? 'none' : 'block'; };
+const onKeyActivate = fn => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } };
+$('storageToggle').onclick = toggleDelete;
+$('storageToggle').onkeydown = onKeyActivate(toggleDelete);
+$('deleteOfflineBtn').onkeydown = onKeyActivate(deleteOfflineFiles);
+
+$('tabJuzBtn').onclick = () => {
+  $('tabJuzBtn').classList.add('active'); $('tabSurahBtn').classList.remove('active');
+  $('juzTabContent').style.display = 'block'; $('surahTabContent').style.display = 'none';
+};
+$('tabSurahBtn').onclick = () => {
+  $('tabSurahBtn').classList.add('active'); $('tabJuzBtn').classList.remove('active');
+  $('surahTabContent').style.display = 'block'; $('juzTabContent').style.display = 'none';
+};
+OVERLAYS.forEach(id => { $(id).querySelector('.overlay-backdrop').onclick = () => closeOverlay(id); });
+
+// دکمهٔ بازگشت: ابتدا بستن پنجره‌ها، بعد برگشت به صفحهٔ خوش‌آمد
+history.replaceState({ quranApp: true }, '');
+history.pushState({ quranApp: true, level: 1 }, '');
+addEventListener('popstate', () => {
+  if (closeActiveOverlay()) { history.pushState({ quranApp: true, level: 1 }, ''); return; }
+  const splash = $('splashOverlay');
+  if (!splash.classList.contains('active')) { splash.classList.add('active'); history.pushState({ quranApp: true, level: 1 }, ''); }
+});
+
+// لمس: پینچ، پن، دابل‌تپ، سوایپ
+const swipeArea = $('swipeArea');
+let sx = 0, sy = 0, st = 0;
+const dist = e => Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+swipeArea.addEventListener('touchstart', e => {
+  if (e.touches.length >= 2) { pinchDist = dist(e); panning = false; }
+  else if (e.touches.length === 1) {
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); moved = false;
+    if (scale > 1) panning = true;
+  }
+}, { passive: false });
+swipeArea.addEventListener('touchmove', e => {
+  e.preventDefault(); moved = true;
+  if (e.touches.length >= 2 && pinchDist) {
+    const d = dist(e);
+    scale = Math.min(Math.max(1, scale * (d / pinchDist)), 4);
+    pinchDist = d; applyTransform(false);
+  } else if (e.touches.length === 1 && panning && scale > 1) {
+    tx = lastTx + (e.touches[0].clientX - sx); ty = lastTy + (e.touches[0].clientY - sy);
+    applyTransform(false);
+  }
+}, { passive: false });
+swipeArea.addEventListener('touchend', e => {
+  if (e.touches.length > 0) {
+    pinchDist = null;
+    if (e.touches.length === 1 && scale > 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; lastTx = tx; lastTy = ty; panning = true; }
+    return;
+  }
+  pinchDist = null;
+  if (panning) { lastTx = tx; lastTy = ty; panning = false; }
+  if (!moved) {
+    const now = Date.now();
+    if (now - lastTap < 300 && now - lastTap > 0) { clearTimeout(tapT); if (scale > 1) resetZoom(); else { scale = 2; applyTransform(true); } lastTap = 0; return; }
+    lastTap = now; clearTimeout(tapT);
+    tapT = setTimeout(() => { if (lastTap === now) document.body.classList.toggle('immersive'); }, 320);
+  } else lastTap = 0;
+  if (scale <= 1.05 && e.changedTouches.length === 1 && moved) {
+    const dx = Math.abs(e.changedTouches[0].clientX - sx), dy = Math.abs(e.changedTouches[0].clientY - sy);
+    if (dx > 80 && dx > dy * 2 && Date.now() - st < 600) {
+      if (e.changedTouches[0].clientX > sx) nextPage(); else prevPage();
+    }
+  }
+}, { passive: false });
+
+addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') { e.preventDefault(); nextPage(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); prevPage(); }
+  else if (e.key === 'Escape') closeActiveOverlay();
+});
+
+// ریسایز: فقط وقتی حالت موبایل/دسکتاپ عوض شد صفحه‌ها دوباره ساخته شوند (زوم کاربر ریست نشود)
+let lastMobile = isMobile(), resizeTimer;
+addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { const m = isMobile(); if (m !== lastMobile) { lastMobile = m; updatePages(); } }, 150);
+});
+
+// ================== Init ==================
+(async function init() {
+  applyTheme();
+  setLanguage(currentLang);
+  const fromHash = parseInt((location.hash || '').slice(1), 10);
+  const saved = parseInt(localStorage.getItem('lastQuranFile'), 10);
+  currentFile = !isNaN(fromHash) ? fromHash : !isNaN(saved) ? saved : FIRST_FILE;
+  updatePages();
+  const st = await checkStatus();
+  downloadStatus = st.status;
+  if (st.status === 'complete') setDownloadedUI();
+  else { updateStorageVisibility(); updateStatusUI(); }
+})();
+</script>
+</body>
+</html>
