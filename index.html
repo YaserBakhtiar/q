@@ -27,11 +27,11 @@ body.theme-abi{--bg:#EAF2FC;--tx:#12223D;--mut:#5B6F8C;--ac:#2B6ED9;--ac2:#7AB0F
 body.theme-abi.night-mode{--bg:#070D1B;--tx:#EEF3FF;--mut:#8EA2C8;--ac:#5AA2FF;--ac2:#9CC6FF;--on:#04142B;--gl:rgba(20,32,58,.55);--gb:rgba(255,255,255,.13);--sheet:rgba(12,20,40,.9);--fill:rgba(255,255,255,.08);--b1:rgba(90,162,255,.2);--b2:rgba(156,198,255,.12)}
 body.lang-ar{--fs:var(--fk)}
 body.night-mode{--filter:invert(.9) brightness(1.1) contrast(1.05) hue-rotate(180deg)}
+html{background:#EDF3EF}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 ::-webkit-scrollbar{display:none}
 body,.splash-overlay{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cpath d='M36 5l7 16 16-7-7 16 16 7-16 7 7 16-16-7-7 16-7-16-16 7 7-16-16-7 16-7-7-16 16 7z' fill='none' stroke='%23888' stroke-opacity='.13'/%3E%3C/svg%3E"),radial-gradient(60% 40% at 12% 8%,var(--b1),transparent 70%),radial-gradient(50% 38% at 95% 32%,var(--b2),transparent 70%),radial-gradient(70% 40% at 50% 104%,var(--b1),transparent 70%),var(--bg);background-attachment:fixed}
-body{font-family:var(--fs);color:var(--tx);height:100dvh;overflow:hidden;touch-action:none;line-height:1.5;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:color .4s}
-body:not(.night-mode)::after{content:'';position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + 4px);background:linear-gradient(rgba(0,0,0,.4),transparent);pointer-events:none;z-index:90}
+body{font-family:var(--fs);color:var(--tx);position:fixed;inset:0;overflow:hidden;touch-action:none;line-height:1.5;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:color .4s}
 .ic{width:1em;height:1em;fill:currentColor;flex-shrink:0}
 button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .glass{background:var(--gl);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);border:1px solid var(--gb);box-shadow:0 8px 32px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.4)}
@@ -66,7 +66,8 @@ body.night-mode .page-wrapper{background:#101614}
 .nav-btn .ic{box-sizing:content-box;padding:13px;border-radius:50%;background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;transition:opacity .25s,transform .25s}
 .nav-btn:hover .ic{opacity:1}
 .nav-btn:active .ic{transform:scale(.88)}
-.nav-right{right:0}.nav-left{left:0}
+.nav-btn{direction:ltr;padding:0 14px}
+.nav-right{right:0;justify-content:flex-end}.nav-left{left:0;justify-content:flex-start}
 body.is-fs{--top:22px;--bot:22px}
 body.is-fs .progress-pill{top:12px}
 @media(min-width:769px){.desk{display:flex}.nav-btn{display:flex}.page{max-width:calc(50vw - 56px)}body.is-fs .page{max-width:calc(50vw - 14px)}}
@@ -424,6 +425,7 @@ function applyTheme() {
   if (themeMode === 'night') b.classList.add('night-mode');
   const colors = { zard: ['#F8F1E3', '#14100A'], abi: ['#EAF2FC', '#070D1B'], modern: ['#EDF3EF', '#06100D'] };
   $('theme-color-meta').setAttribute('content', colors[themeStyle][themeMode === 'night' ? 1 : 0]);
+  document.documentElement.style.backgroundColor = colors[themeStyle][themeMode === 'night' ? 1 : 0];
   ['zard', 'abi', 'modern'].forEach(s => $('theme' + s[0].toUpperCase() + s.slice(1) + 'Btn').classList.toggle('active', themeStyle === s));
   $('quickIc').setAttribute('href', themeMode === 'night' ? '#i-sun' : '#i-moon');
   $('themeDayBtn').classList.toggle('active', themeMode === 'day');
