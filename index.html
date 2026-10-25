@@ -17,6 +17,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@400;700;800&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+/* رنگ نوار وضعیت iOS قبل از اولین نقاشی صفحه با تم ذخیره‌شده هماهنگ می‌شود */
+(function(){try{var c={zard:['#F8F1E3','#14100A'],abi:['#EAF2FC','#070D1B'],modern:['#EDF3EF','#06100D']},
+st=localStorage.getItem('quran-theme-style');if(!c[st])st='modern';
+var v=c[st][localStorage.getItem('quran-theme-mode')==='night'?1:0];
+document.getElementById('theme-color-meta').setAttribute('content',v);
+document.documentElement.style.backgroundColor=v;}catch(e){}})();
+</script>
 <style>
 :root{--fs:'Vazirmatn',-apple-system,'SF Arabic',system-ui,Tahoma,sans-serif;--fk:'Almarai','Vazirmatn',-apple-system,sans-serif;--top:calc(env(safe-area-inset-top,0px) + 74px);--bot:calc(env(safe-area-inset-bottom,0px) + 96px);--ease:cubic-bezier(.32,.72,0,1);--filter:none;--dg:#E5483D}
 body.theme-modern{--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
