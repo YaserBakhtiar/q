@@ -1,4 +1,4 @@
-const APP_CACHE_NAME = 'quran-app-v13';
+const APP_CACHE_NAME = 'quran-app-v14';
 const IMAGE_CACHE_NAME = 'quran-cache-webp-v1'; // باید با index.html یکی باشد
 const QURAN_IMAGE_RE = /Quran\d{3}\.(?:jpg|webp)/;
 const FONT_CSS = 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Almarai:wght@400;700;800&family=Vazirmatn:wght@300;400;500;600;700&display=swap';
