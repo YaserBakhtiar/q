@@ -27,16 +27,16 @@ document.documentElement.style.backgroundColor=v;}catch(e){}})();
 </script>
 <style>
 :root{--fs:'Vazirmatn',-apple-system,'SF Arabic',system-ui,Tahoma,sans-serif;--fk:'Almarai','Vazirmatn',-apple-system,sans-serif;--top:calc(env(safe-area-inset-top,0px) + 74px);--bot:calc(env(safe-area-inset-bottom,0px) + 96px);--ease:cubic-bezier(.32,.72,0,1);--filter:none;--dg:#E5483D}
-body.theme-modern{--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
-body.theme-modern.night-mode{--bg:#06100D;--tx:#EAF4EF;--mut:#8CA79B;--ac:#3FD0A4;--ac2:#E0BC6A;--on:#05231A;--gl:rgba(24,44,37,.55);--gb:rgba(255,255,255,.14);--sheet:rgba(13,26,21,.9);--fill:rgba(255,255,255,.08);--b1:rgba(63,208,164,.2);--b2:rgba(224,188,106,.14)}
-body.theme-zard{--bg:#F8F1E3;--tx:#2B1D10;--mut:#8A7556;--ac:#A8760B;--ac2:#D9A936;--on:#fff;--gl:rgba(255,251,242,.66);--gb:rgba(255,255,255,.85);--sheet:rgba(252,247,236,.9);--fill:rgba(120,80,20,.08);--b1:rgba(217,169,54,.28);--b2:rgba(168,118,11,.16)}
-body.theme-zard.night-mode{--bg:#14100A;--tx:#F0E6D2;--mut:#A39274;--ac:#E3B04B;--ac2:#F0D58A;--on:#2A1D05;--gl:rgba(44,33,19,.55);--gb:rgba(255,255,255,.12);--sheet:rgba(28,21,12,.9);--fill:rgba(255,255,255,.07);--b1:rgba(227,176,75,.18);--b2:rgba(168,118,11,.14)}
-body.theme-abi{--bg:#EAF2FC;--tx:#12223D;--mut:#5B6F8C;--ac:#2B6ED9;--ac2:#7AB0FF;--on:#fff;--gl:rgba(255,255,255,.64);--gb:rgba(255,255,255,.85);--sheet:rgba(244,248,254,.9);--fill:rgba(20,60,130,.07);--b1:rgba(43,110,217,.22);--b2:rgba(122,176,255,.3)}
-body.theme-abi.night-mode{--bg:#070D1B;--tx:#EEF3FF;--mut:#8EA2C8;--ac:#5AA2FF;--ac2:#9CC6FF;--on:#04142B;--gl:rgba(20,32,58,.55);--gb:rgba(255,255,255,.13);--sheet:rgba(12,20,40,.9);--fill:rgba(255,255,255,.08);--b1:rgba(90,162,255,.2);--b2:rgba(156,198,255,.12)}
+body.theme-modern{--topc:#0F5E4A;--bg:#EDF3EF;--tx:#10231C;--mut:#5E7469;--ac:#0F7B61;--ac2:#C9A24B;--on:#fff;--gl:rgba(255,255,255,.62);--gb:rgba(255,255,255,.8);--sheet:rgba(246,250,248,.88);--fill:rgba(15,60,45,.07);--b1:rgba(15,123,97,.22);--b2:rgba(201,162,75,.26)}
+body.theme-modern.night-mode{--topc:var(--bg);--bg:#06100D;--tx:#EAF4EF;--mut:#8CA79B;--ac:#3FD0A4;--ac2:#E0BC6A;--on:#05231A;--gl:rgba(24,44,37,.55);--gb:rgba(255,255,255,.14);--sheet:rgba(13,26,21,.9);--fill:rgba(255,255,255,.08);--b1:rgba(63,208,164,.2);--b2:rgba(224,188,106,.14)}
+body.theme-zard{--topc:#7A5410;--bg:#F8F1E3;--tx:#2B1D10;--mut:#8A7556;--ac:#A8760B;--ac2:#D9A936;--on:#fff;--gl:rgba(255,251,242,.66);--gb:rgba(255,255,255,.85);--sheet:rgba(252,247,236,.9);--fill:rgba(120,80,20,.08);--b1:rgba(217,169,54,.28);--b2:rgba(168,118,11,.16)}
+body.theme-zard.night-mode{--topc:var(--bg);--bg:#14100A;--tx:#F0E6D2;--mut:#A39274;--ac:#E3B04B;--ac2:#F0D58A;--on:#2A1D05;--gl:rgba(44,33,19,.55);--gb:rgba(255,255,255,.12);--sheet:rgba(28,21,12,.9);--fill:rgba(255,255,255,.07);--b1:rgba(227,176,75,.18);--b2:rgba(168,118,11,.14)}
+body.theme-abi{--topc:#1D4F9C;--bg:#EAF2FC;--tx:#12223D;--mut:#5B6F8C;--ac:#2B6ED9;--ac2:#7AB0FF;--on:#fff;--gl:rgba(255,255,255,.64);--gb:rgba(255,255,255,.85);--sheet:rgba(244,248,254,.9);--fill:rgba(20,60,130,.07);--b1:rgba(43,110,217,.22);--b2:rgba(122,176,255,.3)}
+body.theme-abi.night-mode{--topc:var(--bg);--bg:#070D1B;--tx:#EEF3FF;--mut:#8EA2C8;--ac:#5AA2FF;--ac2:#9CC6FF;--on:#04142B;--gl:rgba(20,32,58,.55);--gb:rgba(255,255,255,.13);--sheet:rgba(12,20,40,.9);--fill:rgba(255,255,255,.08);--b1:rgba(90,162,255,.2);--b2:rgba(156,198,255,.12)}
 body.lang-ar{--fs:var(--fk)}
 body.night-mode{--filter:invert(.9) brightness(1.1) contrast(1.05) hue-rotate(180deg)}
 html{background:#EDF3EF;height:100vh}
-body::before{content:'';position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:90;pointer-events:none}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + 56px);background:linear-gradient(var(--topc) 0,var(--topc) env(safe-area-inset-top,0px),transparent 100%);z-index:90;pointer-events:none}
 body::after{content:'';position:fixed;left:0;right:0;bottom:0;height:calc(env(safe-area-inset-bottom,0px) + 70px);background:linear-gradient(transparent,var(--bg));z-index:5;pointer-events:none}
 body.immersive::after,body.is-fs::after{display:none}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
